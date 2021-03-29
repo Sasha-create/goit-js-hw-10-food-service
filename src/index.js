@@ -15,13 +15,13 @@ const Theme = {
 
 function themeMaker() {
   if (switchInput.checked) {
-    body.classList.remove(Theme.LIGHT);
+    //body.classList.remove(Theme.LIGHT);
     body.classList.add(Theme.DARK);
     localStorage.setItem('Theme', Theme.DARK);
     return;
   }
   body.classList.remove(Theme.DARK);
-  body.classList.add(Theme.LIGHT);
+  //body.classList.add(Theme.LIGHT);
   localStorage.setItem('Theme', Theme.LIGHT);
 }
 function pointerPossitioning() {
