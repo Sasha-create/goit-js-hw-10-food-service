@@ -8,27 +8,44 @@ container.insertAdjacentHTML('afterbegin', markup);
 
 const body = document.querySelector('body');
 const switchInput = document.querySelector('.js-switch-input');
+
+switchInput.addEventListener('change', switchInputChecked);
+
 const Theme = {
   LIGHT: 'light-theme',
   DARK: 'dark-theme',
 };
 
-function themeMaker() {
-  if (switchInput.checked) {
-    //body.classList.remove(Theme.LIGHT);
+function switchInputChecked() {
+  const currentTheme = localStorage.getItem('theme');
+  if (currentTheme === Theme.LIGHT) {
+    body.classList.remove(Theme.LIGHT);
     body.classList.add(Theme.DARK);
-    localStorage.setItem('Theme', Theme.DARK);
-    return;
+
+    localStorage.setItem('theme', Theme.DARK);
+  } else {
+    body.classList.remove(Theme.DARK);
+    body.classList.add(Theme.LIGHT);
+
+    localStorage.setItem('theme', Theme.LIGHT);
   }
-  body.classList.remove(Theme.DARK);
-  //body.classList.add(Theme.LIGHT);
-  localStorage.setItem('Theme', Theme.LIGHT);
 }
-function pointerPossitioning() {
-  if (localStorage.getItem('Theme') === 'dark-theme') {
+
+function checkedTheme() {
+  const theme = localStorage.getItem('theme');
+
+  if (!theme) {
+    localStorage.setItem('theme', Theme.LIGHT);
+    body.classList.add(Theme.LIGHT);
+  }
+
+  if (theme === Theme.DARK) {
     body.classList.add(Theme.DARK);
     switchInput.checked = true;
   }
+
+  if (theme === Theme.LIGHT) {
+    body.classList.add(Theme.LIGHT);
+  }
 }
-switchInput.addEventListener('click', themeMaker);
-pointerPossitioning();
+checkedTheme()
