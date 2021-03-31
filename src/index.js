@@ -19,14 +19,10 @@ const Theme = {
 function switchInputChecked() {
   const currentTheme = localStorage.getItem('theme');
   if (currentTheme === Theme.LIGHT) {
-    body.classList.remove(Theme.LIGHT);
     body.classList.add(Theme.DARK);
-
     localStorage.setItem('theme', Theme.DARK);
   } else {
     body.classList.remove(Theme.DARK);
-    body.classList.add(Theme.LIGHT);
-
     localStorage.setItem('theme', Theme.LIGHT);
   }
 }
@@ -36,7 +32,6 @@ function checkedTheme() {
 
   if (!theme) {
     localStorage.setItem('theme', Theme.LIGHT);
-    body.classList.add(Theme.LIGHT);
   }
 
   if (theme === Theme.DARK) {
@@ -48,4 +43,4 @@ function checkedTheme() {
     body.classList.add(Theme.LIGHT);
   }
 }
-checkedTheme()
+checkedTheme();
